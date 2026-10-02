@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XtremeTech</title>
+<link rel="icon" href="https://cdn.discordapp.com/emojis/1551904668567863297.webp?size=24">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#000 url("https://github.com/xtremetechprograms/IMAGES/blob/main/BGTGT.png?raw=true") center/cover no-repeat fixed;color:#f2f2f2;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:grid;align-items:center;grid-template-columns:1fr auto 1fr;padding:.8rem 1.25rem;background:rgba(0,0,0,.45);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.1)}
+.center{display:flex;align-items:center;gap:.5rem;justify-self:center}.links{display:flex;gap:.5rem;flex-wrap:nowrap}.brand{display:flex;align-items:center;gap:.6rem;justify-self:start;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}.brand img{width:32px;height:32px;border-radius:8px}.btn{height:2.5rem;white-space:nowrap}.links .btn{width:8rem;justify-content:center}.discord{justify-self:end;background:#5865f2;border-color:#5865f2}.discord:hover{background:#4752c4;border-color:#4752c4}.btn svg.fill{fill:currentColor;stroke:none}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.06);color:#f2f2f2;font:inherit;font-size:.92rem;cursor:pointer;backdrop-filter:blur(8px);transition:background .2s,border-color .2s}
+.btn:hover,.btn.active{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.btn svg{flex-shrink:0;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.menu{position:relative}
+.menu .btn{padding:.55rem .8rem}
+.drop{position:absolute;top:calc(100% + .6rem);left:50%;transform:translateX(-50%);display:none;flex-direction:column;gap:.4rem;width:360px;max-height:70vh;overflow-y:auto;scrollbar-width:none;padding:.5rem;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:rgba(10,10,10,.8);backdrop-filter:blur(12px)}.drop::-webkit-scrollbar{display:none}a.btn{text-decoration:none}
+.drop.open{display:flex}
+.drop .btn{width:100%;justify-content:flex-start;flex-shrink:0}
+main{position:relative;z-index:1;min-height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:5.5rem 1rem 2rem}
+.ph{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;margin-bottom:1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:1200px;margin:0 auto;text-align:left}
+.card{display:flex;flex-direction:column;padding:1.4rem;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:rgba(10,10,10,.6);backdrop-filter:blur(10px)}
+.card small{color:#aaa}.card h3{font-size:1.35rem;margin:.2rem 0 .6rem}.price{font-size:2.2rem;font-weight:800;margin-bottom:1rem}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem}
+.card li::before{content:"✔";color:#5865f2;margin-right:.55rem}
+.card ul ul{margin:.45rem 0 0 1.5rem}.card ul ul li::before{content:"•";color:#aaa}
+section#plans,section#apps,section#bots,section#servers,section#intel,section#amd,section#hosting,section#cloud,section#terms{width:100%}
+.buy{margin-top:auto;justify-content:center;width:100%;background:#5865f2;border-color:#5865f2;font-weight:600}.buy:hover{background:#4752c4;border-color:#4752c4}.card ul{margin-bottom:1.4rem}
+section{display:none}
+section.show{display:block}
+h1{font-size:clamp(2.5rem,8vw,5.5rem);font-weight:800;letter-spacing:-.03em}
+@media(max-width:960px){.links .lbl{display:none}.links .btn{width:2.5rem;padding:0}}@media(max-width:720px){nav{position:absolute}.menu{position:static}.drop{width:min(360px,92vw);max-height:none;overflow:visible;top:calc(100% + .5rem)}.brand span,.discord span{display:none}.discord{padding:0 .7rem}}
+main{padding-top:7.5rem}
+.ph{margin-bottom:2rem}
+.grid{grid-template-columns:repeat(3,1fr);max-width:1100px;gap:1.1rem}
+.card{display:flex;flex-direction:column}
+.card ul{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.4rem}
+.buy{margin-top:auto}
+#grid .card:nth-child(n+4),#grid3 .card:nth-child(4){grid-column:1/-1;display:grid;grid-template-columns:230px 1fr 160px;align-items:center;gap:1.75rem;padding:1.5rem 1.75rem}
+#grid .card:nth-child(n+4) ul,#grid3 .card:nth-child(4) ul{display:block;column-count:2;column-gap:2rem;margin:0}
+#grid .card:nth-child(n+4) li,#grid3 .card:nth-child(4) li{break-inside:avoid;margin-bottom:.5rem}
+#grid .card:nth-child(n+4) ul ul,#grid3 .card:nth-child(4) ul ul{column-count:1;margin-top:.5rem}
+#grid .card:nth-child(n+4) .buy,#grid3 .card:nth-child(4) .buy{margin:0}
+.card h3{margin-bottom:.5rem}.ch{margin-bottom:1rem}
+@media(max-width:900px){.grid{grid-template-columns:1fr}#grid .card:nth-child(n+4),#grid3 .card:nth-child(4){display:flex;flex-direction:column;align-items:stretch;gap:0;padding:1.4rem}#grid .card:nth-child(n+4) ul,#grid3 .card:nth-child(4) ul{display:flex;column-count:auto;margin-bottom:1.4rem}#grid .card:nth-child(n+4) .buy,#grid3 .card:nth-child(4) .buy{margin-top:auto}main{padding-top:6rem}}
+#grid2{grid-template-columns:repeat(4,1fr);max-width:1200px}
+@media(max-width:1100px){#grid2{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){#grid2{grid-template-columns:1fr}}
+#grid4{grid-template-columns:repeat(2,1fr);max-width:800px}
+@media(max-width:700px){#grid4{grid-template-columns:1fr}}
+#grid5 .card:nth-child(1) h3{color:#4ade80;text-shadow:0 0 14px #4ade8066}
+#grid5 .card:nth-child(2) h3{color:#a3e635;text-shadow:0 0 14px #a3e63566}
+#grid5 .card:nth-child(3) h3{color:#facc15;text-shadow:0 0 14px #facc1566}
+#grid5 .card:nth-child(4) h3{color:#fb923c;text-shadow:0 0 14px #fb923c66}
+#grid5 .card:nth-child(5) h3{color:#ef4444;text-shadow:0 0 14px #ef444466}
+#grid5 .card:nth-child(6) h3{color:#d946ef;text-shadow:0 0 14px #d946ef66}
+#grid .card:nth-child(1) h3{color:#38bdf8;text-shadow:0 0 14px #38bdf866}
+#grid .card:nth-child(2) h3{color:#60a5fa;text-shadow:0 0 14px #60a5fa66}
+#grid .card:nth-child(3) h3{color:#818cf8;text-shadow:0 0 14px #818cf866}
+#grid .card:nth-child(4) h3{color:#a78bfa;text-shadow:0 0 14px #a78bfa66}
+#grid .card:nth-child(5) h3{color:#f472b6;text-shadow:0 0 14px #f472b666}
+#grid2 .card:nth-child(1) h3{color:#fde047;text-shadow:0 0 14px #fde04766}
+#grid2 .card:nth-child(2) h3{color:#fbbf24;text-shadow:0 0 14px #fbbf2466}
+#grid2 .card:nth-child(3) h3{color:#fb7185;text-shadow:0 0 14px #fb718566}
+#grid2 .card:nth-child(4) h3{color:#c084fc;text-shadow:0 0 14px #c084fc66}
+#grid3 .card:nth-child(1) h3{color:#86efac;text-shadow:0 0 14px #86efac66}
+#grid3 .card:nth-child(2) h3{color:#34d399;text-shadow:0 0 14px #34d39966}
+#grid3 .card:nth-child(3) h3{color:#14b8a6;text-shadow:0 0 14px #14b8a666}
+#grid3 .card:nth-child(4) h3{color:#06b6d4;text-shadow:0 0 14px #06b6d466}
+#grid4 .card:nth-child(1) h3{color:#f472b6;text-shadow:0 0 14px #f472b666}
+#grid4 .card:nth-child(2) h3{color:#fbbf24;text-shadow:0 0 14px #fbbf2466}
+#grid6 .card:nth-child(1) h3{color:#fda4af;text-shadow:0 0 14px #fda4af66}
+#grid6 .card:nth-child(2) h3{color:#fb7185;text-shadow:0 0 14px #fb718566}
+#grid6 .card:nth-child(3) h3{color:#f43f5e;text-shadow:0 0 14px #f43f5e66}
+#grid6 .card:nth-child(4) h3{color:#ef4444;text-shadow:0 0 14px #ef444466}
+#grid6 .card:nth-child(5) h3{color:#dc2626;text-shadow:0 0 14px #dc262666}
+#grid6 .card:nth-child(6) h3{color:#ff1744;text-shadow:0 0 14px #ff174466}
+#grid .card:nth-child(1) h3{color:#38bdf8;text-shadow:0 0 14px #38bdf866}
+#grid .card:nth-child(2) h3{color:#4ade80;text-shadow:0 0 14px #4ade8066}
+#grid .card:nth-child(3) h3{color:#facc15;text-shadow:0 0 14px #facc1566}
+#grid .card:nth-child(4) h3{color:#fb923c;text-shadow:0 0 14px #fb923c66}
+#grid .card:nth-child(5) h3{color:#f472b6;text-shadow:0 0 14px #f472b666}
+#grid2 .card:nth-child(1) h3{color:#c084fc;text-shadow:0 0 14px #c084fc66}
+#grid2 .card:nth-child(2) h3{color:#34d399;text-shadow:0 0 14px #34d39966}
+#grid2 .card:nth-child(3) h3{color:#fbbf24;text-shadow:0 0 14px #fbbf2466}
+#grid2 .card:nth-child(4) h3{color:#fb7185;text-shadow:0 0 14px #fb718566}
+#grid3 .card:nth-child(1) h3{color:#22d3ee;text-shadow:0 0 14px #22d3ee66}
+#grid3 .card:nth-child(2) h3{color:#a3e635;text-shadow:0 0 14px #a3e63566}
+#grid3 .card:nth-child(3) h3{color:#e879f9;text-shadow:0 0 14px #e879f966}
+#grid3 .card:nth-child(4) h3{color:#fb923c;text-shadow:0 0 14px #fb923c66}
+#grid4 .card:nth-child(1) h3{color:#2dd4bf;text-shadow:0 0 14px #2dd4bf66}
+#grid4 .card:nth-child(2) h3{color:#fbbf24;text-shadow:0 0 14px #fbbf2466}
+#grid5 .card:nth-child(1) h3{color:#4ade80;text-shadow:0 0 14px #4ade8066}
+#grid5 .card:nth-child(2) h3{color:#22d3ee;text-shadow:0 0 14px #22d3ee66}
+#grid5 .card:nth-child(3) h3{color:#facc15;text-shadow:0 0 14px #facc1566}
+#grid5 .card:nth-child(4) h3{color:#fb923c;text-shadow:0 0 14px #fb923c66}
+#grid5 .card:nth-child(5) h3{color:#ef4444;text-shadow:0 0 14px #ef444466}
+#grid5 .card:nth-child(6) h3{color:#d946ef;text-shadow:0 0 14px #d946ef66}
+#grid6 .card:nth-child(1) h3{color:#f472b6;text-shadow:0 0 14px #f472b666}
+#grid6 .card:nth-child(2) h3{color:#a78bfa;text-shadow:0 0 14px #a78bfa66}
+#grid6 .card:nth-child(3) h3{color:#60a5fa;text-shadow:0 0 14px #60a5fa66}
+#grid6 .card:nth-child(4) h3{color:#2dd4bf;text-shadow:0 0 14px #2dd4bf66}
+#grid6 .card:nth-child(5) h3{color:#fbbf24;text-shadow:0 0 14px #fbbf2466}
+#grid6 .card:nth-child(6) h3{color:#f87171;text-shadow:0 0 14px #f8717166}
+#grid7,#grid8{grid-template-columns:repeat(5,1fr);max-width:1200px}
+@media(max-width:900px){#grid7,#grid8{grid-template-columns:1fr}}
+#grid7 .card:nth-child(1) h3{color:#22d3ee;text-shadow:0 0 14px #22d3ee66}
+#grid7 .card:nth-child(2) h3{color:#a3e635;text-shadow:0 0 14px #a3e63566}
+#grid7 .card:nth-child(3) h3{color:#fbbf24;text-shadow:0 0 14px #fbbf2466}
+#grid7 .card:nth-child(4) h3{color:#fb7185;text-shadow:0 0 14px #fb718566}
+#grid7 .card:nth-child(5) h3{color:#c084fc;text-shadow:0 0 14px #c084fc66}
+#grid8 .card:nth-child(1) h3{color:#38bdf8;text-shadow:0 0 14px #38bdf866}
+#grid8 .card:nth-child(2) h3{color:#4ade80;text-shadow:0 0 14px #4ade8066}
+#grid8 .card:nth-child(3) h3{color:#fb923c;text-shadow:0 0 14px #fb923c66}
+#grid8 .card:nth-child(4) h3{color:#ef4444;text-shadow:0 0 14px #ef444466}
+#grid8 .card:nth-child(5) h3{color:#a78bfa;text-shadow:0 0 14px #a78bfa66}
+#ai{width:100%;max-width:900px}
+.chat{display:flex;flex-direction:column;height:calc(100vh - 9.5rem);min-height:440px;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:rgba(10,10,10,.65);backdrop-filter:blur(12px);overflow:hidden;text-align:left}
+.chead{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.12)}
+.chead b{font-size:1.1rem}
+.chead .btn{height:2.1rem;padding:0 .9rem;font-size:.85rem}
+.msgs{flex:1;overflow-y:auto;padding:1.1rem;display:flex;flex-direction:column;gap:.9rem;scrollbar-width:thin}
+.empty{margin:auto;text-align:center;color:#bbb}
+.empty h2{font-size:2rem;color:#fff;margin-bottom:.4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1.1rem}
+.chip{height:2.2rem;font-size:.85rem}
+.msg{max-width:82%;padding:.7rem 1rem;border-radius:20px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.95rem}
+.msg.u{align-self:flex-end;background:#5865f2;border-bottom-right-radius:6px}
+.msg.a{align-self:flex-start;background:rgba(255,255,255,.1);border-bottom-left-radius:6px}
+.msg pre{background:rgba(0,0,0,.55);padding:.7rem;border-radius:12px;overflow-x:auto;margin:.5rem 0;white-space:pre}
+.tools{display:flex;gap:.4rem;margin-top:.55rem}
+.tb{height:1.8rem;padding:0 .75rem;font-size:.78rem}
+.dots{display:inline-flex;gap:4px;padding:.2rem 0}
+.dots i{width:7px;height:7px;border-radius:50%;background:#ccc;animation:bn 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bn{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.cform{display:flex;gap:.6rem;align-items:flex-end;padding:.8rem;border-top:1px solid rgba(255,255,255,.12)}
+.cform textarea{flex:1;resize:none;max-height:140px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:22px;color:inherit;font:inherit;padding:.65rem 1rem;outline:none}
+.cform textarea:focus{border-color:#5865f2}
+.send{width:2.6rem;height:2.6rem;padding:0;justify-content:center;background:#5865f2;border-color:#5865f2;flex-shrink:0}
+.send:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){.dots i{animation:none}}
+@media(max-width:700px){.msg{max-width:92%}}
+.tcgrid{grid-template-columns:repeat(2,1fr);max-width:1100px}
+.tci{max-width:680px;margin:-1rem auto 1.75rem;color:#bdbdbd;line-height:1.55}
+.tc ul{gap:.95rem;margin-bottom:0}
+.tc li::before{content:none}
+.tc li b{display:block;margin-bottom:.15rem}
+.tc li span{color:#cfcfcf;font-size:.9rem;line-height:1.5}
+.tcbtn{display:inline-flex;margin:1.75rem auto 0}
+@media(max-width:900px){.tcgrid{grid-template-columns:1fr}}
+#tcgrid{display:block;max-width:1050px;padding:.25rem 2.5rem;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:rgba(10,10,10,.65);backdrop-filter:blur(12px)}
+#tcgrid .tc{background:none;border:0;border-radius:0;backdrop-filter:none;padding:1.5rem 0}
+#tcgrid .tc+.tc{border-top:1px solid rgba(255,255,255,.12)}
+@media(max-width:600px){#tcgrid{padding:.25rem 1.1rem}}
+</style>
+</head>
+<body>
+<nav>
+<div class="brand"><img src="https://cdn.discordapp.com/emojis/1551904668567863297.webp?size=48" alt=""><span>XtremeTech</span></div>
+<div class="center">
+<div class="links" id="links"></div>
+<div class="menu">
+<button class="btn" id="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+<div class="drop" id="drop"></div>
+</div>
+</div>
+<a class="btn discord" href="https://discord.gg/T6bjwg8KDZ" target="_blank" rel="noopener"><svg class="fill" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.1 14.1 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg><span>Discord</span></a>
+</nav>
+<main>
+<section id="welcome" class="show"><h1>Welcome to XtremeTech</h1></section>
+<section id="plans"><h2 class="ph">XtremeTech Website Plans</h2><div class="grid" id="grid"></div></section>
+<section id="apps"><h2 class="ph">&lt;/&gt; XtremeTech Apps Plans &lt;/&gt;</h2><div class="grid" id="grid2"></div></section>
+<section id="bots"><h2 class="ph">XtremeTech Discord Bots Plans</h2><div class="grid" id="grid3"></div></section>
+<section id="servers"><h2 class="ph">XtremeTech Discord Server Plans</h2><div class="grid" id="grid4"></div></section>
+<section id="intel"><h2 class="ph">XtremeTech Minecraft Intel Plans</h2><div class="grid" id="grid5"></div></section>
+<section id="amd"><h2 class="ph">XtremeTech Minecraft AMD Ryzen Plans</h2><div class="grid" id="grid6"></div></section>
+<section id="hosting"><h2 class="ph">XtremeTech Discord Bots Hosting Plans</h2><div class="grid" id="grid7"></div></section>
+<section id="cloud"><h2 class="ph">XtremeTech Cloud Storage Plans</h2><div class="grid" id="grid8"></div></section>
+<section id="ai"><div class="chat"><div class="chead"><b>🧠 XtremeAI</b><button class="btn" id="newchat">New chat</button></div><div class="msgs" id="msgs"></div><div class="cform"><textarea id="inp" rows="1" placeholder="Message XtremeAI"></textarea><button class="btn send" id="send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></div></div></section>
+<section id="info"></section>
+<section id="terms"><h2 class="ph">Terms and Conditions</h2><p class="tci">By buying, accessing or using any XtremeTech service, you agree to the terms below. Read them once, it saves trouble later.</p><div class="grid tcgrid" id="tcgrid"></div><a class="btn discord tcbtn" href="https://discord.gg/T6bjwg8KDZ" target="_blank" rel="noopener">Questions? Ask on Discord</a></section>
+<section id="process"></section>
+</main>
+<script>
+const items=[
+["welcome","Welcome",'<path d="M3 11l9-8 9 8M5 10v10h14V10"/>'],
+["info","Info",'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>'],
+["terms","TCs",'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h6"/>'],
+["process","Process",'<path d="M4 12a8 8 0 0 1 14-5l2 2M20 4v5h-5M20 12a8 8 0 0 1-14 5l-2-2M4 20v-5h5"/>']
+];
+const mk=(id,label,icon)=>`<button class="btn" data-id="${id}" title="${label}" aria-label="${label}"><svg viewBox="0 0 24 24">${icon}</svg><span class="lbl">${label}</span></button>`;
+const plans=[
+{n:"XtremeTech Spark",c:199,f:["Static Website","Double Page","Redirections","Portfolios","Business Advertisements","Hosted on GitHub Pages","Custom Names","Custom SVG Logos","Performance Stability"]},
+{n:"XtremeTech Amber",c:249,f:["Advanced Website","Four Pages","Firebase Backend","Live Data Changes","Products Selling Area","Admin Panels","Live Chats","Permissions Management","Includes all from Spark Plan"]},
+{n:"XtremeTech Flaming",c:599,f:["Artificial Intelligence","Eight Pages","ChatBot","Live Backgrounds","100+ Animations","Songs Player","Custom Chat Features","Tested by Experts","Includes all from Amber Plan"]},
+{n:"XtremeTech Legendary Beast",c:1099,f:["AI Training Panel","XtremeAI Guider","Mobile Friendly","Highlighting Shopping Ads","200+ Animations","Official Support for a Month","Custom Avatar Decorations","Earning by Selling Perks","Includes all from Flaming Plan"]},
+{n:"XtremeTech Overpowered",c:3699,f:["Free (.com) Domain for First Year","Advanced Analytics for Admins","Multi Panels & Multi Tasking","Advanced Maths Solver","Official Support for a Month","Advanced and Best Styling","Includes all from Flaming Plan"],h:["200% CPU","8 GB RAM","50 GB SSD"]}
+];
+const render=(id,a)=>document.getElementById(id).innerHTML=a.map((p,i)=>`<div class="card"><div class="ch"><small>Plan ${i+1}</small><h3>${p.n}</h3><div class="price">₹${p.c}${p.u?`<small> ${p.u}</small>`:""}</div>${p.r?`<small>${p.rl||`Renewal ₹${p.r} / month`}</small>`:""}</div><ul>${p.f.map(x=>`<li>${x}</li>`).join("")}${p.h?`<li>${p.hl||"Free Hosting Server"}<ul>${p.h.map(x=>`<li>${x}</li>`).join("")}</ul></li>`:""}</ul><a class="btn buy" href="https://discord.gg/T6bjwg8KDZ" target="_blank" rel="noopener">Buy Now</a></div>`).join("");
+const apps=[
+{n:"XtremeTech MicroSpark",c:2000,f:["GUI (Graphical User Interface)","Single Window","Web Link Redirections","Portfolios + Background Songs","Simple Automations","Online Products Lists","Custom Name","Custom App Logo"]},
+{n:"XtremeTech Gold",c:4500,f:["Mini Games","Four Windows","Custom Stylings","Firebase Backends","Control Panels","Performance Optimizations","Up to 100 Users","Live Chats","Includes all from Spark Plan"]},
+{n:"XtremeTech Splash",c:6000,f:["Artificial Intelligence","Eight Windows","Customer Care","Live Backgrounds","Up to 20 Animations","Songs Player","Advanced Chatting","Checked by Professionals","Includes all from Gold Plan"]},
+{n:"XtremeTech Master",c:8000,f:["AI Training Panel","Advanced App","Mobile Friendly Interface","Highlighting Shopping Ads","Up to 60 Animations","Official Support for a Month","Custom Avatar Decorations","Earning by Selling Perks","Includes all from Splash Plan"]}
+];
+const bots=[
+{n:"SparkTech",c:80,r:40,f:["Custom Automations","Sending Embeds","Profile Registrations","Social Media Interactions"],hl:"Deployment Server",h:["5% CPU","200 MiB RAM","150 MiB Storage"]},
+{n:"OP Bots",c:160,r:60,f:["Custom Bot Banner and Description","Bot's Emojis","Backend Works","Artificial Intelligence (Rate Limited)"],hl:"Deployment Server",h:["10% CPU","300 MiB RAM","250 MiB Storage"]},
+{n:"Graded Bots",c:240,r:80,f:["Multi Servers Support","A.I (Full API to Bot)","Custom Commands","Dashboard Customizations"],hl:"Deployment Server",h:["15% CPU","400 MiB RAM","500 MiB Storage"]},
+{n:"Elite Bots",c:350,r:100,f:["Bot's Backend Custom Web Dashboard","Complicated Tasks","One Click Server Setup","Auto Admin/Moderation","Advanced Abuse Detector","Anti Raiding for Servers","Custom Things Blocking","OCTA (One Command to Announce) in All Servers","Custom Ticket Creation","Staff Assignment System"],hl:"Deployment Server",h:["20% CPU","600 MiB RAM","800 MiB Storage"]}
+];
+const servers=[
+{n:"Design and Nature",c:120,f:["Custom Server Decoration","Beautiful Embeds","Fix Common Bugs","Configuration of Bots","Roles Setup with Unicodes","Attractive Server Description","Auto Triggers"]},
+{n:"Technology and Economy",c:240,r:20,rl:"Bot Renewal ₹20",f:["Large Server Setup","Ecommerce Special","Developer Support for a Week","Highly Attracting Embeds","Auto Blocking Abuses","Attractive Server Description","Custom Bot Name and Logo"],hl:"Bot's Hosting",h:["5% CPU","200 MiB RAM","150 MiB Storage"]}
+];
+const intel=[{n:"XtremeTech Micro Spark",c:80,u:"/ month",f:["CPU: 70%","RAM: 2 GB","Storage: 6 GB"]},{n:"XtremeTech Spark",c:140,u:"/ month",f:["CPU: 100%","RAM: 4 GB","Storage: 12 GB"]},{n:"XtremeTech Prime",c:220,u:"/ month",f:["CPU: 200%","RAM: 8 GB","Storage: 25 GB"]},{n:"XtremeTech Ultra",c:420,u:"/ month",f:["CPU: 300%","RAM: 16 GB","Storage: 50 GB"]},{n:"XtremeTech Supernova",c:800,u:"/ month",f:["CPU: 490%","RAM: 24 GB","Storage: 75 GB"]},{n:"XtremeTech Legitimacy",c:1550,u:"/ month",f:["CPU: 580%","RAM: 32 GB","Storage: 80 GB"]}];
+const amd=[{n:"XtremeTech Micro Spark",c:100,u:"/ month",f:["CPU: 100%","RAM: 2 GB","Storage: 6 GB"]},{n:"XtremeTech Spark",c:160,u:"/ month",f:["CPU: 160%","RAM: 4 GB","Storage: 12 GB"]},{n:"XtremeTech Prime",c:260,u:"/ month",f:["CPU: 200%","RAM: 8 GB","Storage: 25 GB"]},{n:"XtremeTech Ultra",c:480,u:"/ month",f:["CPU: 300%","RAM: 16 GB","Storage: 50 GB"]},{n:"XtremeTech Supernova",c:900,u:"/ month",f:["CPU: 490%","RAM: 24 GB","Storage: 75 GB"]},{n:"XtremeTech Legitimacy",c:1650,u:"/ month",f:["CPU: 600%","RAM: 32 GB","Storage: 80 GB"]}];
+const hosting=[{n:"100 MB RAM",c:30,u:"/ month",f:["Discord Bot Hosting"]},{n:"500 MB RAM",c:70,u:"/ month",f:["Discord Bot Hosting"]},{n:"1 GB RAM",c:110,u:"/ month",f:["Discord Bot Hosting"]},{n:"2 GB RAM",c:150,u:"/ month",f:["Discord Bot Hosting"]},{n:"4 GB RAM",c:190,u:"/ month",f:["Discord Bot Hosting"]}];
+const cloud=[{n:"Micro Spark",c:40,u:"/ month",f:["Storage: 10 GB","Unmetered Bandwidth"]},{n:"Spark",c:180,u:"/ month",f:["Storage: 50 GB","Unmetered Bandwidth"]},{n:"Flames Of Kingdom",c:380,u:"/ month",f:["Storage: 100 GB","Unmetered Bandwidth"]},{n:"Tanks Arena",c:1500,u:"/ month",f:["Storage: 500 GB","Unmetered Bandwidth"]},{n:"Bunker Vault",c:2600,u:"/ month",f:["Storage: 1 TB","Unmetered Bandwidth"]}];
+render("grid",plans);render("grid8",cloud);render("grid7",hosting);render("grid6",amd);render("grid5",intel);render("grid4",servers);render("grid3",bots);render("grid2",apps);
+const cats=["🌐 ᴡᴇʙsɪᴛᴇ ᴘʟᴀɴs","🛠️ ᴘʀᴏɢʀᴀᴍ ᴘʟᴀɴs","🤖 ᴅɪsᴄᴏʀᴅ ʙᴏᴛ ᴘʟᴀɴs","🖥️ ᴅɪsᴄᴏʀᴅ sᴇʀᴠᴇʀ ᴘʟᴀɴs","⛏️ ᴍɪɴᴇᴄʀᴀғᴛ ᴍᴏᴅs ᴘʟᴀɴs","⚔️ ᴍɪɴᴇᴄʀᴀғᴛ sᴇʀᴠᴇʀ ᴘʟᴀɴs","⚡ xᴛʀᴇᴍᴇᴀɪ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴs","🔑 ᴅᴏᴍᴀɪɴ ᴘʟᴀɴs","💠 ᴍɪɴᴇᴄʀᴀꜰᴛ ɪɴᴛᴇʟ ᴘʟᴀɴs","🔻 ᴍɪɴᴇᴄʀᴀꜰᴛ ᴀᴍᴅ ᴘʟᴀɴs","🤖 ᴅɪsᴄᴏʀᴅ ʙᴏᴛ ʜᴏsᴛɪɴɢ","💻 ᴠᴘs ᴘʟᴀɴs","⚙️ ʙᴀᴄᴋᴇɴᴅ ʜᴏsᴛɪɴɢ","☁️ ᴄʟᴏᴜᴅ sᴛᴏʀᴀɢᴇ ᴘʟᴀɴs","🕹️ ɢᴀᴍᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ","📱 ᴍᴏʙɪʟᴇ ᴀᴘᴘ ᴘʟᴀɴs","🧩 ᴍɪɴᴇᴄʀᴀғᴛ ᴘʟᴜɢɪɴ ᴘʟᴀɴs"];
+const html=items.map(i=>mk(...i)).join("");
+const links=document.getElementById("links"),drop=document.getElementById("drop"),burger=document.getElementById("burger");
+links.innerHTML=html;drop.innerHTML='<button class="btn" data-cat="x">🧠 XtremeAI</button>'+cats.map((c,i)=>`<button class="btn" data-cat="${i}">${c}</button>`).join("");
+function go(id){
+document.querySelectorAll("section").forEach(s=>s.classList.toggle("show",s.id===id));
+document.querySelectorAll("[data-id]").forEach(b=>b.classList.toggle("active",b.dataset.id===id));
+drop.classList.remove("open");burger.setAttribute("aria-expanded","false");scrollTo(0,0);if(id==='ai')setTimeout(()=>document.getElementById('inp').focus(),50);
+}
+document.addEventListener("click",e=>{
+const b=e.target.closest("[data-id]");
+if(b)return go(b.dataset.id);
+const k=e.target.closest("[data-cat]");
+if(k){const t={0:"plans",1:"apps",2:"bots",3:"servers",8:"intel",9:"amd",10:"hosting",13:"cloud",x:"ai"}[k.dataset.cat];if(t)go(t);drop.classList.remove("open");return burger.setAttribute("aria-expanded","false")}
+if(e.target.closest("#burger")){const o=drop.classList.toggle("open");burger.setAttribute("aria-expanded",o)}
+else if(!e.target.closest("#drop")){drop.classList.remove("open");burger.setAttribute("aria-expanded","false")}
+});
+const $=id=>document.getElementById(id);
+const msgs=$("msgs"),inp=$("inp"),sendB=$("send");
+const hist=[];let busy=false;
+const API_URL="";
+const esc=t=>t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const fmt=t=>esc(t).split("```").map((p,i)=>i%2?`<pre><code>${p.replace(/^\w*\n/,"")}</code></pre>`:p).join("");
+async function askAI(h){
+const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:h})});
+const d=await r.json();
+return d.reply;
+}
+function showEmpty(){
+msgs.innerHTML='<div class="empty"><h2>XtremeAI</h2><div>Ask anything. Code, ideas, plans, answers.</div><div class="chips">'+["Explain a concept simply","Write a code snippet","Plan my project","Summarize my text"].map(t=>`<button class="btn chip">${t}</button>`).join("")+"</div></div>";
+}
+function addMsg(role,text){
+const e=msgs.querySelector(".empty");if(e)e.remove();
+msgs.querySelectorAll(".regen").forEach(b=>b.remove());
+const d=document.createElement("div");d.className="msg "+role;d.dataset.raw=text;
+if(role==="u")d.textContent=text;
+else d.innerHTML=fmt(text)+'<div class="tools"><button class="btn tb" data-a="copy">Copy</button><button class="btn tb regen" data-a="regen">Regenerate</button></div>';
+msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
+}
+async function run(){
+busy=true;sendB.disabled=true;
+const t=document.createElement("div");t.className="msg a";t.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';
+msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
+let r;try{r=await askAI(hist)}catch(e){console.error(e);t.remove();busy=false;sendB.disabled=false;inp.focus();return}
+t.remove();hist.push({role:"assistant",content:r});addMsg("a",r);
+busy=false;sendB.disabled=false;inp.focus();
+}
+function send(t){
+t=t.trim();if(busy||!t)return;
+hist.push({role:"user",content:t});addMsg("u",t);
+inp.value="";inp.style.height="auto";run();
+}
+sendB.addEventListener("click",()=>send(inp.value));
+inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();send(inp.value)}});
+inp.addEventListener("input",()=>{inp.style.height="auto";inp.style.height=Math.min(inp.scrollHeight,140)+"px"});
+$("newchat").addEventListener("click",()=>{if(busy)return;hist.length=0;showEmpty()});
+msgs.addEventListener("click",e=>{
+const c=e.target.closest(".chip");if(c)return send(c.textContent);
+const b=e.target.closest("[data-a]");if(!b)return;
+const m=b.closest(".msg");
+if(b.dataset.a==="copy"){navigator.clipboard.writeText(m.dataset.raw).then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1200)}).catch(()=>{})}
+else if(!busy){m.remove();hist.pop();run()}
+});
+const tcs=[
+["🤝 Conduct","#38bdf8",[["Respect","Treat staff, developers, clients and members with respect. Harassment, threats, discrimination and bullying are not tolerated."],["No impersonation","Never claim to be an XtremeTech developer, staff member, representative or partner."],["Legal use only","Our services must not be used for fraud, scams, harassment or any illegal activity."]]],
+["🔐 Security and Access","#4ade80",[["No unauthorized access","Do not try to reach another person's account, files, database, dashboard, source code or private information."],["No exploiting","Do not abuse bugs or vulnerabilities. Found one? Report it to staff."],["Protect credentials","Never share passwords, API keys, bot tokens or database credentials publicly. Leaks caused by sharing them are your responsibility."],["No malware","Our services cannot be used to build or spread malware, credential stealers, destructive software or unauthorized access tools."],["No service abuse","Do not overload, disrupt or exploit any XtremeTech website, bot, API, database or server."]]],
+["💳 Payments and Refunds","#facc15",[["Honest payments","Fake proofs, fraudulent payments, chargeback abuse and payment manipulation are strictly prohibited."],["Monthly renewals","Monthly plans such as bots, hosting, storage and Minecraft servers must be renewed to stay active. Services left unpaid may be suspended and their data removed after notice."],["Refunds","Eligibility depends on project progress, completed work and the agreed terms. Substantially completed custom work and time already used on monthly services are generally not refundable."],["Price changes","Prices and features may change over time, but a change never affects a period you have already paid for."]]],
+["💻 Projects and Ownership","#fb923c",[["Ownership","Ownership and licensing follow the agreement made for each project. Do not claim XtremeTech's or anyone else's work as your own."],["No leaking or reselling","Do not leak, resell, redistribute or publicly upload paid work unless your agreement allows it."],["Accurate information","Clients must give accurate requirements, files and details. Missing or wrong information can delay delivery."],["Changes","Major changes to a project are discussed with the client first."]]],
+["⚙️ Services and Hosting","#c084fc",[["Resource limits","CPU, RAM and storage listed in a plan are hard limits. Going over or abusing them can lead to throttling, restarts or suspension."],["Fair use","Unmetered bandwidth is for normal use. Attack tools, DDoS scripts, proxies, crypto mining and mass hosting are not allowed on any server or host."],["Backups","Keep your own backups of important data and files."],["Free perks","Free domains, free hosting and similar perks apply only as listed in the plan. Renewal after the first year is at the client's cost."],["Support period","Support included in a plan, such as one week or one month, lasts only for the stated time."],["AI services","AI features must not be configured or used for harmful, fraudulent, abusive or illegal purposes."]]],
+["🎫 Support and Enforcement","#f472b6",[["Use the right channel","Open tickets in the correct place. Spam or duplicate tickets can lead to restrictions."],["Real bug reports","Report genuine bugs with enough detail to reproduce them. False reports are treated as support abuse."],["Consequences","Violations can lead to warnings, restrictions, suspension or termination. Serious violations may be actioned immediately."]]]
+];
+$("tcgrid").innerHTML=tcs.map(([t,c,r])=>`<div class="card tc"><h3 style="color:${c};text-shadow:0 0 14px ${c}66">${t}</h3><ul>${r.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join("")}</ul></div>`).join("");
+showEmpty();
+go("welcome");
+</script>
+</body>
+</html>
