@@ -29,7 +29,7 @@ main{position:relative;z-index:1;min-height:100%;display:flex;align-items:center
 .card ul{list-style:none;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem}
 .card li::before{content:"✔";color:#5865f2;margin-right:.55rem}
 .card ul ul{margin:.45rem 0 0 1.5rem}.card ul ul li::before{content:"•";color:#aaa}
-section#plans,section#apps,section#bots,section#servers,section#intel,section#amd,section#hosting,section#cloud,section#terms{width:100%}
+section#plans,section#apps,section#bots,section#servers,section#intel,section#amd,section#hosting,section#cloud,section#terms,section#mcserver{width:100%}
 .buy{margin-top:auto;justify-content:center;width:100%;background:#5865f2;border-color:#5865f2;font-weight:600}.buy:hover{background:#4752c4;border-color:#4752c4}.card ul{margin-bottom:1.4rem}
 section{display:none}
 section.show{display:block}
@@ -158,6 +158,48 @@ main{padding-top:7.5rem}
 #tcgrid .tc{background:none;border:0;border-radius:0;backdrop-filter:none;padding:1.5rem 0}
 #tcgrid .tc+.tc{border-top:1px solid rgba(255,255,255,.12)}
 @media(max-width:600px){#tcgrid{padding:.25rem 1.1rem}}
+#wait{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);text-align:center}
+#wait.on{display:flex}
+.spin{width:54px;height:54px;border:4px solid rgba(255,255,255,.2);border-top-color:#5865f2;border-radius:50%;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.wt{font-size:1.3rem}.wt b{font-size:1.6rem;color:#5865f2}
+.wbar{width:min(280px,70vw);height:6px;border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}
+.wbar i{display:block;height:100%;width:0;background:#5865f2}
+@media(prefers-reduced-motion:reduce){.spin{animation:none}}
+#grid9{grid-template-columns:repeat(4,1fr);max-width:1200px}
+.card ul:empty{display:none}
+@media(max-width:1100px){#grid9{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){#grid9{grid-template-columns:1fr}}
+#grid9 .card:nth-child(8n+1) h3{color:#38bdf8;text-shadow:0 0 14px #38bdf866}
+#grid9 .card:nth-child(8n+2) h3{color:#4ade80;text-shadow:0 0 14px #4ade8066}
+#grid9 .card:nth-child(8n+3) h3{color:#facc15;text-shadow:0 0 14px #facc1566}
+#grid9 .card:nth-child(8n+4) h3{color:#fb923c;text-shadow:0 0 14px #fb923c66}
+#grid9 .card:nth-child(8n+5) h3{color:#f472b6;text-shadow:0 0 14px #f472b666}
+#grid9 .card:nth-child(8n+6) h3{color:#c084fc;text-shadow:0 0 14px #c084fc66}
+#grid9 .card:nth-child(8n+7) h3{color:#2dd4bf;text-shadow:0 0 14px #2dd4bf66}
+#grid9 .card:nth-child(8n+8) h3{color:#f87171;text-shadow:0 0 14px #f8717166}
+.pboxes{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem}
+.pbox{display:flex;flex-direction:column;gap:.15rem;text-align:left;flex:1 1 130px;min-width:130px;max-width:200px;padding:.6rem .75rem;border:1px solid rgba(255,255,255,.22);border-radius:16px;background:rgba(0,0,0,.35);color:inherit;font:inherit;white-space:normal;cursor:pointer;transition:border-color .2s,background .2s}
+.pbox:hover{border-color:#5865f2;background:rgba(88,101,242,.18)}
+.pbox small{color:#aaa;font-size:.68rem;text-transform:uppercase;letter-spacing:.04em}
+.pbox b{font-size:.92rem}
+.pbox .pp{color:#8ea1ff;font-weight:700;font-size:.9rem}
+.pbox em{font-style:normal;color:#bbb;font-size:.74rem;line-height:1.3}
+.chat{position:relative}
+.emo{width:2.6rem;height:2.6rem;padding:0;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.epick{position:absolute;left:.8rem;bottom:4.6rem;width:min(360px,calc(100% - 1.6rem));height:290px;display:none;flex-direction:column;border:1px solid rgba(255,255,255,.2);border-radius:20px;background:rgba(12,12,16,.94);backdrop-filter:blur(14px);overflow:hidden;z-index:5}
+.epick.on{display:flex}
+.etabs{display:flex;gap:2px;padding:.35rem;border-bottom:1px solid rgba(255,255,255,.12);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
+.etabs::-webkit-scrollbar{display:none}
+.et{flex:0 0 auto;width:2.2rem;height:2.2rem;border:0;border-radius:10px;background:none;font-size:1.15rem;cursor:pointer}
+.et:hover,.et.on{background:rgba(255,255,255,.14)}
+.eg{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;padding:.4rem;overflow-y:auto;scrollbar-width:thin;align-content:start}
+.e{border:0;border-radius:10px;background:none;font-size:1.35rem;padding:.25rem 0;cursor:pointer;line-height:1.2}
+.e:hover{background:rgba(255,255,255,.16)}
+*{scrollbar-width:none;-ms-overflow-style:none}
+*::-webkit-scrollbar{display:none;width:0;height:0}
+.msg a{color:#8ea1ff;text-decoration:underline;word-break:break-all}
+.msg strong{font-weight:700}
 </style>
 </head>
 <body>
@@ -182,11 +224,13 @@ main{padding-top:7.5rem}
 <section id="amd"><h2 class="ph">XtremeTech Minecraft AMD Ryzen Plans</h2><div class="grid" id="grid6"></div></section>
 <section id="hosting"><h2 class="ph">XtremeTech Discord Bots Hosting Plans</h2><div class="grid" id="grid7"></div></section>
 <section id="cloud"><h2 class="ph">XtremeTech Cloud Storage Plans</h2><div class="grid" id="grid8"></div></section>
-<section id="ai"><div class="chat"><div class="chead"><b>🧠 XtremeAI</b><button class="btn" id="newchat">New chat</button></div><div class="msgs" id="msgs"></div><div class="cform"><textarea id="inp" rows="1" placeholder="Message XtremeAI"></textarea><button class="btn send" id="send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></div></div></section>
+<section id="ai"><div class="chat"><div class="chead"><b>🧠 XtremeAI</b><button class="btn" id="newchat">New chat</button></div><div class="msgs" id="msgs"></div><div class="cform"><button class="btn emo" id="emo" type="button" aria-label="Emoji" aria-expanded="false">😊</button><textarea id="inp" rows="1" placeholder="Message XtremeAI"></textarea><button class="btn send" id="send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></div><div class="epick" id="epick"><div class="etabs" id="etabs"></div><div class="eg" id="eg"></div></div></div></section>
+<section id="mcserver"><h2 class="ph">XtremeTech Minecraft Server Plans</h2><div class="grid" id="grid9"></div></section>
 <section id="info"></section>
 <section id="terms"><h2 class="ph">Terms and Conditions</h2><p class="tci">By buying, accessing or using any XtremeTech service, you agree to the terms below. Read them once, it saves trouble later.</p><div class="grid tcgrid" id="tcgrid"></div><a class="btn discord tcbtn" href="https://discord.gg/T6bjwg8KDZ" target="_blank" rel="noopener">Questions? Ask on Discord</a></section>
 <section id="process"></section>
 </main>
+<div id="wait"><div class="spin"></div><div class="wt">Opening Panel in <b id="wn">5</b></div><div class="wbar"><i id="wb"></i></div><button class="btn" id="wc">Cancel</button></div>
 <script>
 const items=[
 ["welcome","Welcome",'<path d="M3 11l9-8 9 8M5 10v10h14V10"/>'],
@@ -202,7 +246,7 @@ const plans=[
 {n:"XtremeTech Legendary Beast",c:1099,f:["AI Training Panel","XtremeAI Guider","Mobile Friendly","Highlighting Shopping Ads","200+ Animations","Official Support for a Month","Custom Avatar Decorations","Earning by Selling Perks","Includes all from Flaming Plan"]},
 {n:"XtremeTech Overpowered",c:3699,f:["Free (.com) Domain for First Year","Advanced Analytics for Admins","Multi Panels & Multi Tasking","Advanced Maths Solver","Official Support for a Month","Advanced and Best Styling","Includes all from Flaming Plan"],h:["200% CPU","8 GB RAM","50 GB SSD"]}
 ];
-const render=(id,a)=>document.getElementById(id).innerHTML=a.map((p,i)=>`<div class="card"><div class="ch"><small>Plan ${i+1}</small><h3>${p.n}</h3><div class="price">₹${p.c}${p.u?`<small> ${p.u}</small>`:""}</div>${p.r?`<small>${p.rl||`Renewal ₹${p.r} / month`}</small>`:""}</div><ul>${p.f.map(x=>`<li>${x}</li>`).join("")}${p.h?`<li>${p.hl||"Free Hosting Server"}<ul>${p.h.map(x=>`<li>${x}</li>`).join("")}</ul></li>`:""}</ul><a class="btn buy" href="https://discord.gg/T6bjwg8KDZ" target="_blank" rel="noopener">Buy Now</a></div>`).join("");
+const render=(id,a)=>document.getElementById(id).innerHTML=a.map((p,i)=>`<div class="card"><div class="ch"><small>${p.l||`Plan ${i+1}`}</small><h3>${p.n}</h3><div class="price">${p.pre?`<small>${p.pre} </small>`:""}₹${p.c}${p.u?`<small> ${p.u}</small>`:""}</div>${p.r?`<small>${p.rl||`Renewal ₹${p.r} / month`}</small>`:""}</div><ul>${p.f.map(x=>`<li>${x}</li>`).join("")}${p.h?`<li>${p.hl||"Free Hosting Server"}<ul>${p.h.map(x=>`<li>${x}</li>`).join("")}</ul></li>`:""}</ul><a class="btn buy" href="https://discord.gg/T6bjwg8KDZ" target="_blank" rel="noopener">Buy Now</a></div>`).join("");
 const apps=[
 {n:"XtremeTech MicroSpark",c:2000,f:["GUI (Graphical User Interface)","Single Window","Web Link Redirections","Portfolios + Background Songs","Simple Automations","Online Products Lists","Custom Name","Custom App Logo"]},
 {n:"XtremeTech Gold",c:4500,f:["Mini Games","Four Windows","Custom Stylings","Firebase Backends","Control Panels","Performance Optimizations","Up to 100 Users","Live Chats","Includes all from Spark Plan"]},
@@ -223,11 +267,12 @@ const intel=[{n:"XtremeTech Micro Spark",c:80,u:"/ month",f:["CPU: 70%","RAM: 2 
 const amd=[{n:"XtremeTech Micro Spark",c:100,u:"/ month",f:["CPU: 100%","RAM: 2 GB","Storage: 6 GB"]},{n:"XtremeTech Spark",c:160,u:"/ month",f:["CPU: 160%","RAM: 4 GB","Storage: 12 GB"]},{n:"XtremeTech Prime",c:260,u:"/ month",f:["CPU: 200%","RAM: 8 GB","Storage: 25 GB"]},{n:"XtremeTech Ultra",c:480,u:"/ month",f:["CPU: 300%","RAM: 16 GB","Storage: 50 GB"]},{n:"XtremeTech Supernova",c:900,u:"/ month",f:["CPU: 490%","RAM: 24 GB","Storage: 75 GB"]},{n:"XtremeTech Legitimacy",c:1650,u:"/ month",f:["CPU: 600%","RAM: 32 GB","Storage: 80 GB"]}];
 const hosting=[{n:"100 MB RAM",c:30,u:"/ month",f:["Discord Bot Hosting"]},{n:"500 MB RAM",c:70,u:"/ month",f:["Discord Bot Hosting"]},{n:"1 GB RAM",c:110,u:"/ month",f:["Discord Bot Hosting"]},{n:"2 GB RAM",c:150,u:"/ month",f:["Discord Bot Hosting"]},{n:"4 GB RAM",c:190,u:"/ month",f:["Discord Bot Hosting"]}];
 const cloud=[{n:"Micro Spark",c:40,u:"/ month",f:["Storage: 10 GB","Unmetered Bandwidth"]},{n:"Spark",c:180,u:"/ month",f:["Storage: 50 GB","Unmetered Bandwidth"]},{n:"Flames Of Kingdom",c:380,u:"/ month",f:["Storage: 100 GB","Unmetered Bandwidth"]},{n:"Tanks Arena",c:1500,u:"/ month",f:["Storage: 500 GB","Unmetered Bandwidth"]},{n:"Bunker Vault",c:2600,u:"/ month",f:["Storage: 1 TB","Unmetered Bandwidth"]}];
-render("grid",plans);render("grid8",cloud);render("grid7",hosting);render("grid6",amd);render("grid5",intel);render("grid4",servers);render("grid3",bots);render("grid2",apps);
+const mcs=[{n:"Complete Minecraft Server Setup",c:249,l:"Server Setup",f:[]},{n:"Survival or SMP Setup",c:249,l:"Server Setup",f:[]},{n:"Lifesteal SMP Setup",c:249,l:"Server Setup",f:[]},{n:"PvP Practice Setup",c:249,l:"Server Setup",f:[]},{n:"Bedwars Setup",c:169,l:"Server Setup",f:[]},{n:"Skyblock Setup",c:169,l:"Server Setup",f:[]},{n:"Geyser MC and Floodgate Setup (Cross-Platform)",c:100,l:"Network",f:[]},{n:"BungeeCord / Velocity Network Setup",c:120,l:"Network",f:[]},{n:"Plugins Installation and Configurations",c:169,l:"Plugins",f:[],u:"/ all plugins"},{n:"Permissions Setup (LuckPerms)",c:99,l:"Plugins",f:[]},{n:"Tag, Scoreboard and Nametag Setup",c:69,l:"Customization",f:[]},{n:"Crates and Keys Configuration",c:109,l:"Gameplay",f:[]},{n:"Ranks and Kits Setup",c:159,l:"Gameplay",f:[]},{n:"Shop and Economy Setup",c:79,l:"Gameplay",f:[]},{n:"DiscordSRV and Integration",c:129,l:"Integration",f:[]},{n:"Custom Menus (DeluxeMenus)",c:69,l:"Customization",f:[]},{n:"NPCs and Holograms",c:69,l:"Customization",f:[]},{n:"Optimization and Lag Fix",c:79,l:"Fixes",f:[]},{n:"Custom MOTD and Server Branding",c:89,l:"Customization",f:[]},{n:"Bug Fixing or Troubleshooting",c:49,l:"Fixes",f:[],pre:"Starts at"}];
+render("grid",plans);render("grid9",mcs);render("grid8",cloud);render("grid7",hosting);render("grid6",amd);render("grid5",intel);render("grid4",servers);render("grid3",bots);render("grid2",apps);
 const cats=["🌐 ᴡᴇʙsɪᴛᴇ ᴘʟᴀɴs","🛠️ ᴘʀᴏɢʀᴀᴍ ᴘʟᴀɴs","🤖 ᴅɪsᴄᴏʀᴅ ʙᴏᴛ ᴘʟᴀɴs","🖥️ ᴅɪsᴄᴏʀᴅ sᴇʀᴠᴇʀ ᴘʟᴀɴs","⛏️ ᴍɪɴᴇᴄʀᴀғᴛ ᴍᴏᴅs ᴘʟᴀɴs","⚔️ ᴍɪɴᴇᴄʀᴀғᴛ sᴇʀᴠᴇʀ ᴘʟᴀɴs","⚡ xᴛʀᴇᴍᴇᴀɪ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴs","🔑 ᴅᴏᴍᴀɪɴ ᴘʟᴀɴs","💠 ᴍɪɴᴇᴄʀᴀꜰᴛ ɪɴᴛᴇʟ ᴘʟᴀɴs","🔻 ᴍɪɴᴇᴄʀᴀꜰᴛ ᴀᴍᴅ ᴘʟᴀɴs","🤖 ᴅɪsᴄᴏʀᴅ ʙᴏᴛ ʜᴏsᴛɪɴɢ","💻 ᴠᴘs ᴘʟᴀɴs","⚙️ ʙᴀᴄᴋᴇɴᴅ ʜᴏsᴛɪɴɢ","☁️ ᴄʟᴏᴜᴅ sᴛᴏʀᴀɢᴇ ᴘʟᴀɴs","🕹️ ɢᴀᴍᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ","📱 ᴍᴏʙɪʟᴇ ᴀᴘᴘ ᴘʟᴀɴs","🧩 ᴍɪɴᴇᴄʀᴀғᴛ ᴘʟᴜɢɪɴ ᴘʟᴀɴs"];
 const html=items.map(i=>mk(...i)).join("");
 const links=document.getElementById("links"),drop=document.getElementById("drop"),burger=document.getElementById("burger");
-links.innerHTML=html;drop.innerHTML='<button class="btn" data-cat="x">🧠 XtremeAI</button>'+cats.map((c,i)=>`<button class="btn" data-cat="${i}">${c}</button>`).join("");
+links.innerHTML=html;drop.innerHTML='<button class="btn" data-cat="p">🎛️ Panel</button><button class="btn" data-cat="x">🧠 XtremeAI</button>'+cats.map((c,i)=>`<button class="btn" data-cat="${i}">${c}</button>`).join("");
 function go(id){
 document.querySelectorAll("section").forEach(s=>s.classList.toggle("show",s.id===id));
 document.querySelectorAll("[data-id]").forEach(b=>b.classList.toggle("active",b.dataset.id===id));
@@ -237,44 +282,51 @@ document.addEventListener("click",e=>{
 const b=e.target.closest("[data-id]");
 if(b)return go(b.dataset.id);
 const k=e.target.closest("[data-cat]");
-if(k){const t={0:"plans",1:"apps",2:"bots",3:"servers",8:"intel",9:"amd",10:"hosting",13:"cloud",x:"ai"}[k.dataset.cat];if(t)go(t);drop.classList.remove("open");return burger.setAttribute("aria-expanded","false")}
+if(k){if(k.dataset.cat==="p")wait();
+const t={0:"plans",1:"apps",2:"bots",3:"servers",5:"mcserver",8:"intel",9:"amd",10:"hosting",13:"cloud",x:"ai"}[k.dataset.cat];if(t)go(t);drop.classList.remove("open");return burger.setAttribute("aria-expanded","false")}
 if(e.target.closest("#burger")){const o=drop.classList.toggle("open");burger.setAttribute("aria-expanded",o)}
 else if(!e.target.closest("#drop")){drop.classList.remove("open");burger.setAttribute("aria-expanded","false")}
 });
 const $=id=>document.getElementById(id);
 const msgs=$("msgs"),inp=$("inp"),sendB=$("send");
 const hist=[];let busy=false;
-const API_URL="";
+const API_URL="http://127.0.0.1:3000/chat";
 const esc=t=>t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
-const fmt=t=>esc(t).split("```").map((p,i)=>i%2?`<pre><code>${p.replace(/^\w*\n/,"")}</code></pre>`:p).join("");
+const CL={red:"#f87171",green:"#4ade80",blue:"#60a5fa",yellow:"#facc15",orange:"#fb923c",pink:"#f472b6",purple:"#c084fc",cyan:"#22d3ee"};
+const fmt=t=>esc(t)
+.replace(/\[(red|green|blue|yellow|orange|pink|purple|cyan)\]([\s\S]*?)\[\/\1\]/g,(m,c,x)=>`<span style="color:${CL[c]}">${x}</span>`)
+.replace(/\*\*([^*\n]+)\*\*/g,"<strong>$1</strong>")
+.replace(/(^|[^*\w])\*([^*\n]+)\*(?![*\w])/g,"$1<em>$2</em>")
+.replace(/https?:\/\/[^\s<]+/g,u=>{const t=u.match(/[.,!?)\]]+$/);const e=t?t[0]:"";const h=e?u.slice(0,-e.length):u;return `<a href="${h}" target="_blank" rel="noopener">${h}</a>${e}`})
+.replace(/^- /gm,"• ");
+const plain=t=>t.replace(/\[\/?(?:red|green|blue|yellow|orange|pink|purple|cyan)\]/g,"").replace(/\*\*/g,"");
 async function askAI(h){
 const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:h})});
-const d=await r.json();
-return d.reply;
+return await r.json();
 }
 function showEmpty(){
-msgs.innerHTML='<div class="empty"><h2>XtremeAI</h2><div>Ask anything. Code, ideas, plans, answers.</div><div class="chips">'+["Explain a concept simply","Write a code snippet","Plan my project","Summarize my text"].map(t=>`<button class="btn chip">${t}</button>`).join("")+"</div></div>";
+msgs.innerHTML='<div class="empty"><h2>XtremeAI</h2><div>Ask about plans or just chat.</div><div class="chips">'+["Suggest a plan for me","Compare Intel and AMD plans","Cheapest Discord bot hosting","Who made you?"].map(t=>`<button class="btn chip">${t}</button>`).join("")+"</div></div>";
 }
-function addMsg(role,text){
+function addMsg(role,text,plans){
 const e=msgs.querySelector(".empty");if(e)e.remove();
 msgs.querySelectorAll(".regen").forEach(b=>b.remove());
 const d=document.createElement("div");d.className="msg "+role;d.dataset.raw=text;
 if(role==="u")d.textContent=text;
-else d.innerHTML=fmt(text)+'<div class="tools"><button class="btn tb" data-a="copy">Copy</button><button class="btn tb regen" data-a="regen">Regenerate</button></div>';
+else d.innerHTML=fmt(text)+(plans&&plans.length?'<div class="pboxes">'+plans.map(p=>`<button class="pbox" data-page="${esc(p.page)}"><small>${esc(p.cat)}</small><b>${esc(p.name)}</b><span class="pp">${esc(p.price)}</span><em>${esc(p.note)}</em></button>`).join("")+"</div>":"")+'<div class="tools"><button class="btn tb" data-a="copy">Copy</button><button class="btn tb regen" data-a="regen">Regenerate</button></div>';
 msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
 }
 async function run(){
 busy=true;sendB.disabled=true;
 const t=document.createElement("div");t.className="msg a";t.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';
 msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
-let r;try{r=await askAI(hist)}catch(e){console.error(e);t.remove();busy=false;sendB.disabled=false;inp.focus();return}
-t.remove();hist.push({role:"assistant",content:r});addMsg("a",r);
+let r;try{r=await askAI(hist);if(!r||!r.reply)throw new Error("empty")}catch(e){console.error(e);t.remove();busy=false;sendB.disabled=false;inp.focus();return}
+t.remove();hist.push({role:"assistant",content:r.reply});addMsg("a",r.reply,r.plans);
 busy=false;sendB.disabled=false;inp.focus();
 }
 function send(t){
 t=t.trim();if(busy||!t)return;
 hist.push({role:"user",content:t});addMsg("u",t);
-inp.value="";inp.style.height="auto";run();
+inp.value="";inp.style.height="auto";toggleEp(false);run();
 }
 sendB.addEventListener("click",()=>send(inp.value));
 inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();send(inp.value)}});
@@ -282,9 +334,10 @@ inp.addEventListener("input",()=>{inp.style.height="auto";inp.style.height=Math.
 $("newchat").addEventListener("click",()=>{if(busy)return;hist.length=0;showEmpty()});
 msgs.addEventListener("click",e=>{
 const c=e.target.closest(".chip");if(c)return send(c.textContent);
+const pb=e.target.closest(".pbox");if(pb)return go(pb.dataset.page);
 const b=e.target.closest("[data-a]");if(!b)return;
 const m=b.closest(".msg");
-if(b.dataset.a==="copy"){navigator.clipboard.writeText(m.dataset.raw).then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1200)}).catch(()=>{})}
+if(b.dataset.a==="copy"){navigator.clipboard.writeText(plain(m.dataset.raw)).then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1200)}).catch(()=>{})}
 else if(!busy){m.remove();hist.pop();run()}
 });
 const tcs=[
@@ -296,6 +349,42 @@ const tcs=[
 ["🎫 Support and Enforcement","#f472b6",[["Use the right channel","Open tickets in the correct place. Spam or duplicate tickets can lead to restrictions."],["Real bug reports","Report genuine bugs with enough detail to reproduce them. False reports are treated as support abuse."],["Consequences","Violations can lead to warnings, restrictions, suspension or termination. Serious violations may be actioned immediately."]]]
 ];
 $("tcgrid").innerHTML=tcs.map(([t,c,r])=>`<div class="card tc"><h3 style="color:${c};text-shadow:0 0 14px ${c}66">${t}</h3><ul>${r.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join("")}</ul></div>`).join("");
+const PANEL="https://xtremetechprograms.github.io/panel.xtremetech/";
+let wt;
+function wait(){
+const n=$("wn"),bar=$("wb");let c=5;
+n.textContent=c;bar.style.transition="none";bar.style.width="0";
+$("wait").classList.add("on");
+requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition="width 5s linear";bar.style.width="100%"}));
+clearInterval(wt);
+wt=setInterval(()=>{c--;n.textContent=c;if(c<=0){clearInterval(wt);location.href=PANEL}},1000);
+}
+$("wc").addEventListener("click",()=>{clearInterval(wt);$("wait").classList.remove("on")});
+const EM=[["😀","Smileys","😀 😃 😄 😁 😆 😅 😂 🤣 ☺️ 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🤩 🥳 😏 😒 😞 😔 😟 😕 🙁 ☹️ 😣 😖 😫 😩 🥺 😢 😭 😤 😠 😡 🤬 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 😯 😦 😧 😮 😲 🥱 😴 🤤 😪 😵 🤐 🥴 🤢 🤮 🤧 😷 🤒 🤕 🤑 🤠 😈 👿 👹 👺 🤡 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾"],["👋","People","👋 🤚 🖐️ ✋ 🖖 👌 🤌 🤏 ✌️ 🤞 🤟 🤘 🤙 👈 👉 👆 🖕 👇 ☝️ 👍 👎 ✊ 👊 🤛 🤜 👏 🙌 👐 🤲 🤝 🙏 ✍️ 💅 🤳 💪 🦵 🦶 👂 👃 🧠 🦷 👀 👁️ 👅 👄 👶 🧒 👦 👧 🧑 👱 👨 👩 🧔 👴 👵 🙍 🙎 🙅 🙆 💁 🙋 🙇 🤦 🤷 👮 🕵️ 💂 👷 🤴 👸 👳 🎅 🤶 🦸 🦹 🧙 🧚 🧛 🧜 🧝 🧞 🧟 💆 💇 🚶 🏃 💃 🕺 👯 🧘 🛀 🛌 👪 👣"],["🐶","Nature","🐶 🐱 🐭 🐹 🐰 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐽 🐸 🐵 🙈 🙉 🙊 🐒 🐔 🐧 🐦 🐤 🦆 🦅 🦉 🦇 🐺 🐗 🐴 🦄 🐝 🐛 🦋 🐌 🐞 🐜 🦟 🦗 🕷️ 🦂 🐢 🐍 🦎 🦖 🦕 🐙 🦑 🦐 🦞 🦀 🐡 🐠 🐟 🐬 🐳 🐋 🦈 🐊 🐅 🐆 🦓 🦍 🐘 🦛 🦏 🐪 🐫 🦒 🦘 🐃 🐂 🐄 🐎 🐖 🐏 🐑 🦙 🐐 🦌 🐕 🐩 🐈 🐓 🦃 🦚 🦜 🦢 🕊️ 🐇 🦝 🦨 🦡 🦦 🦥 🐁 🐀 🐿️ 🌵 🎄 🌲 🌳 🌴 🌱 🌿 ☘️ 🍀 🎍 🍃 🍂 🍁 🍄 🌾 💐 🌷 🌹 🥀 🌺 🌸 🌼 🌻 🌞 🌝 🌛 🌜 🌚 🌕 🌙 🌎 🌍 🌏 🪐 💫 ⭐ 🌟 ✨ ⚡ ☄️ 💥 🔥 🌪️ 🌈 ☀️ ⛅ ☁️ 🌧️ ⛈️ ❄️ ☃️ ⛄ 💨 💧 💦 ☔ 🌊"],["🍔","Food","🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🍈 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🍆 🥑 🥦 🥬 🥒 🌶️ 🌽 🥕 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥚 🍳 🧈 🥞 🧇 🥓 🥩 🍗 🍖 🌭 🍔 🍟 🍕 🥪 🥙 🧆 🌮 🌯 🥗 🥘 🍝 🍜 🍲 🍛 🍣 🍱 🥟 🍤 🍙 🍚 🍘 🍥 🥠 🍢 🍡 🍧 🍨 🍦 🥧 🧁 🍰 🎂 🍮 🍭 🍬 🍫 🍿 🍩 🍪 🌰 🥜 🍯 🥛 🍼 ☕ 🍵 🧃 🥤 🍶 🍺 🍻 🥂 🍷 🥃 🍸 🍹 🧉 🍾 🧊 🥄 🍴 🍽️ 🥢 🧂"],["⚽","Activity","⚽ 🏀 🏈 ⚾ 🥎 🎾 🏐 🏉 🥏 🎱 🏓 🏸 🏒 🏑 🥍 🏏 🥅 ⛳ 🏹 🎣 🥊 🥋 🎽 🛹 ⛸️ 🥌 🎿 🏂 🏋️ 🤸 🤺 🤾 🏌️ 🏇 🧗 🏄 🏊 🚣 🚴 🏆 🥇 🥈 🥉 🏅 🎖️ 🎗️ 🎫 🎟️ 🎪 🎭 🎨 🎬 🎤 🎧 🎼 🎹 🥁 🎷 🎺 🎸 🎻 🎲 ♟️ 🎯 🎳 🎮 🕹️ 🎰 🧩"],["🚗","Travel","🚗 🚕 🚙 🚌 🚎 🏎️ 🚓 🚑 🚒 🚐 🚚 🚛 🚜 🏍️ 🛵 🚲 🛴 🚨 🚔 🚍 🚘 🚖 🚡 🚠 🚟 🚃 🚋 🚞 🚝 🚄 🚅 🚈 🚂 🚆 🚇 🚊 🚉 ✈️ 🛫 🛬 🛩️ 💺 🛰️ 🚀 🛸 🚁 🛶 ⛵ 🚤 🛥️ 🛳️ ⛴️ 🚢 ⚓ ⛽ 🚧 🚦 🚥 🗺️ 🗿 🗽 🗼 🏰 🏯 🏟️ 🎡 🎢 🎠 ⛲ ⛱️ 🏖️ 🏝️ 🏜️ 🌋 ⛰️ 🏔️ 🗻 🏕️ ⛺ 🏠 🏡 🏘️ 🏢 🏣 🏤 🏥 🏦 🏨 🏪 🏫 🏬 🏭 🌃 🌆 🌇 🌉 🌌 🎆 🎇"],["💡","Objects","⌚ 📱 📲 💻 ⌨️ 🖥️ 🖨️ 🖱️ 🖲️ 💽 💾 💿 📀 📼 📷 📸 📹 🎥 📽️ 🎞️ 📞 ☎️ 📟 📠 📺 📻 🎙️ 🎚️ 🎛️ ⏱️ ⏲️ ⏰ 🕰️ ⌛ ⏳ 📡 🔋 🔌 💡 🔦 🕯️ 🧯 🛢️ 💸 💵 💴 💶 💷 💰 💳 💎 ⚖️ 🔧 🔨 ⚒️ 🛠️ ⛏️ 🔩 ⚙️ 🧱 ⛓️ 🧲 🔫 💣 🧨 🔪 🗡️ ⚔️ 🛡️ 🔮 📿 🧿 💈 ⚗️ 🔭 🔬 💊 💉 🩸 🧬 🦠 🧫 🧪 🌡️ 🧹 🧺 🧻 🚽 🚰 🚿 🛁 🧼 🧽 🔑 🗝️ 🚪 🛋️ 🛏️ 🧸 🖼️ 🛍️ 🛒 🎁 🎈 🎏 🎀 🎊 🎉 🎎 🏮 🎐 ✉️ 📩 📨 📧 📦 📮 📜 📃 📄 📑 📊 📈 📉 🗒️ 📆 📅 📇 📋 📁 📂 📰 📓 📔 📒 📕 📗 📘 📙 📚 📖 🔖 🔗 📎 📐 📏 📌 📍 ✂️ 🖊️ 🖋️ ✒️ 🖌️ 🖍️ 📝 ✏️ 🔍 🔎 🔏 🔐 🔒 🔓"],["❤️","Symbols","❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💔 ❣️ 💕 💞 💓 💗 💖 💘 💝 💟 ☮️ ✝️ ☪️ 🕉️ ☸️ ✡️ 🔯 ☯️ ☦️ 🛐 ⛎ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ 🆔 ⚛️ ☢️ ☣️ 📴 📳 🆚 💮 🆎 🆑 🆘 ❌ ⭕ 🛑 ⛔ 📛 🚫 💯 💢 ♨️ ❗ ❕ ❓ ❔ ‼️ ⁉️ ⚠️ 🚸 🔱 ⚜️ 🔰 ♻️ ✅ 💹 ❇️ ✳️ ❎ 🌐 💠 🌀 💤 🏧 ♿ 🚭 🚹 🚺 🚼 🚻 🚮 🎦 📶 ℹ️ 🔤 🔡 🔠 🆖 🆗 🆙 🆒 🆕 🆓 🔟 ▶️ ⏸️ ⏯️ ⏹️ ⏺️ ⏭️ ⏮️ ⏩ ⏪ ⏫ ⏬ ◀️ 🔼 🔽 ➡️ ⬅️ ⬆️ ⬇️ ↗️ ↘️ ↙️ ↖️ ↕️ ↔️ ↪️ ↩️ ⤴️ ⤵️ 🔀 🔁 🔂 🔄 🔃 🎵 🎶 ➕ ➖ ➗ ✖️ ♾️ 💲 ™️ ©️ ®️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫ ⚪ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ▪️ ▫️ ⬛ ⬜ 🟥 🟧 🟨 🟩 🟦 🟪 🟫 🏁 🚩 🎌"]];
+const ep=$("epick"),eg=$("eg"),etabs=$("etabs"),emoB=$("emo");
+function showCat(i){
+eg.innerHTML=EM[i][2].split(" ").map(x=>`<button class="e" type="button">${x}</button>`).join("");
+eg.scrollTop=0;
+etabs.querySelectorAll(".et").forEach((b,j)=>b.classList.toggle("on",j===i));
+}
+etabs.innerHTML=EM.map((c,i)=>`<button class="et" type="button" data-i="${i}" title="${c[1]}">${c[0]}</button>`).join("");
+showCat(0);
+function toggleEp(on){
+const o=on===undefined?!ep.classList.contains("on"):on;
+ep.classList.toggle("on",o);emoB.setAttribute("aria-expanded",o);
+}
+emoB.addEventListener("click",()=>toggleEp());
+etabs.addEventListener("click",e=>{const b=e.target.closest(".et");if(b)showCat(+b.dataset.i)});
+ep.addEventListener("mousedown",e=>{if(e.target.closest(".e"))e.preventDefault()});
+eg.addEventListener("click",e=>{
+const b=e.target.closest(".e");if(!b)return;
+const a=inp.selectionStart,z=inp.selectionEnd,t=b.textContent;
+inp.value=inp.value.slice(0,a)+t+inp.value.slice(z);
+inp.selectionStart=inp.selectionEnd=a+t.length;
+inp.focus();inp.dispatchEvent(new Event("input"));
+});
+document.addEventListener("click",e=>{if(!e.target.closest("#epick")&&!e.target.closest("#emo"))toggleEp(false)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")toggleEp(false)});
 showEmpty();
 go("welcome");
 </script>
